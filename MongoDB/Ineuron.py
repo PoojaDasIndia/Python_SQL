@@ -8,8 +8,8 @@ print(db)
 mydb=client['Mongotest']
 coll = mydb['test']
 d = {
-    "name": "Pooja",
-    "email": "Poojadas93@outlook.com",
+    "name": "Rama",
+    "email": "rama93@outlook.com",
     "surname": "Das"
 }
 coll.insert_one(d)
