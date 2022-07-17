@@ -1,0 +1,1 @@
+"C:\ProgramData\Anaconda3\envs\pythonProject1\python.exe" "C:\Users\HP\Desktop\Python\Python_SQL\SqlServer\Auto_export_data_into_excel_from_SQL.py"
