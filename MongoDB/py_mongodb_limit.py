@@ -8,10 +8,10 @@ mydb = myclient["EmployeeDetail"]
 
 # create Collection or Table
 
-mycoll = mydb['EmployeeDemo']
+mycoll = mydb['EmployeeDemo1']
 
 for doc in mycoll.find().limit(5):
     print(doc)
 
-for doc in mycoll.find().limit(-3):
+for doc in mycoll.find().limit(-3).skip(1):
     print(doc)

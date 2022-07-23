@@ -12,7 +12,8 @@ mydb=myclient['EmployeeDetail']
 
 """Important: In MongoDB, a database is not created until it gets content!
 
-MongoDB waits until you have created a collection (table), with at least one document (record) before it actually creates the database (and collection)."""
+MongoDB waits until you have created a collection (table), with at least one document (record)
+ before it actually creates the database (and collection)."""
 
 
 # check if a database exist by listing all databases in you system
@@ -27,5 +28,3 @@ if "EmployeeDetail" in dblist:
     print("The database Exits")
 else:
     print("The database  not Exits")
-
-
