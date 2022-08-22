@@ -6,15 +6,15 @@ You can delete a table, or collection as it is called in MongoDB, by using the d
 
 import pymongo
 
-#connection with mongoclient
-myclient=pymongo.MongoClient("localhost",27017)
+# connection with mongoclient
+myclient = pymongo.MongoClient("localhost", 27017)
 
-#database created
-mydb=myclient["EmployeeDetail"]
+# database created
+mydb = myclient["EmployeeDetail"]
 
-#create Collection or Table
+# create Collection or Table
 
-mycoll=mydb['EmployeeDemo']
+mycoll = mydb['EmployeeDemo']
 
 mycoll.drop()
 

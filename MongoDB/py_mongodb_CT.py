@@ -2,23 +2,23 @@
 
 import pymongo
 
-#connection with mongoclient
-myclient=pymongo.MongoClient("localhost",27017)
+# connection with mongoclient
+myclient = pymongo.MongoClient("localhost", 27017)
 
-#database created
-mydb=myclient["EmployeeDetail"]
+# database created
+mydb = myclient["EmployeeDetail"]
 
-#create Collection or Table
+# create Collection or Table
 
-mycoll=mydb['EmployeeDemo']
+mycoll = mydb['EmployeeDemo']
 
-#You can check if a collection exist in a database by listing all collections:
+# You can check if a collection exist in a database by listing all collections:
 
 print(mydb.list_collection_names())
 
 # Check if the "customers" collection exists:
 
-collist=mydb.list_collection_names()
+collist = mydb.list_collection_names()
 
 if "EmployeeDemo" in collist:
     print("The collection Exit")

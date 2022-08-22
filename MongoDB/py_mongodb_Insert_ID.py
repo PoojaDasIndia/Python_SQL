@@ -8,7 +8,7 @@ mydb = myclient["EmployeeDetail"]
 
 # create Collection or Table
 
-mycoll = mydb['EmployeeDemo']
+mycoll = mydb['EmployeeDemo1']
 
 mylist = [
     {"_id": 1, "name": "John", "address": "Highway 37"},
