@@ -1,0 +1,134 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+  // Initialize TinyMCE on textarea fields
+  tinymce.init({
+    selector: 'textarea',
+    plugins: 'autolink lists link',
+    toolbar: 'undo redo | bold italic underline | bullist numlist | link',
+    menubar: false
+  });
+
+  $('.data-row').click(function() {
+    var $columns = $(this).find('td');
+    var recordId = $(this).find('.column-0').text();
+
+    $columns.each(function(index) {
+      if (index > 0 && index < 16) {
+        var columnName = $(this).closest('table').find('th').eq(index).text();
+        var columnValue = $(this).text();
+
+        var textarea = $('#update-modal').find(`#${columnName.toLowerCase().replace(' ', '-')}`);
+        textarea.val(columnValue);
+
+        // Set the content of the TinyMCE editor
+        tinymce.get(textarea.attr('id')).setContent(columnValue);
+      }
+    });
+
+    $('#record-id').val(recordId);
+    $('#update-modal').show();
+  });
+
+  $('#record-form').submit(function(e) {
+    e.preventDefault();
+
+    // Form submission and reset code
+
+    // Hide the modal after form submission
+    $('#update-modal').hide();
+  });
+
+  // Close the modal when clicking outside the modal content
+ $('.close-button').click(function() {
+  $('#record-form')[0].reset();
+  $('#update-modal').hide();
+});
+});
+
+</script>
+______________________________________
+
+
+$(document).ready(function() {
+  // Filter category based on search input
+  $('#searchInput').on('keyup', function() {
+    var value = $(this).val().toLowerCase();
+    var visibleRows = 0;
+
+    $('.data-row').each(function() {
+      var category = $(this).children('.column-0').text().toLowerCase();
+      var row = $(this);
+
+      if (category.indexOf(value) > -1) {
+        row.show();
+        visibleRows++;
+      } else {
+        row.hide();
+      }
+    });
+
+    adjustTableSize(visibleRows);
+  });
+
+  // Function to adjust table size based on filtered rows
+  function adjustTableSize(visibleRows) {
+    var table = $('table');
+    var numRowsToShow = Math.min(visibleRows, 5); // Maximum of 10 rows
+    var minHeight = 50; // Minimum height for the table in pixels
+
+    var tableHeight = numRowsToShow * 10; // Assuming each row is 40px high
+    tableHeight = Math.max(tableHeight, minHeight);
+
+    table.css('height', tableHeight + 'px');
+
+    if (visibleRows > numRowsToShow) {
+      table.css('overflow-y', 'scroll');
+    } else {
+      table.css('overflow-y', 'hidden');
+    }
+  }
+
+  // Rest of your code for handling row click and modal functionality
+  $('.data-row').click(function() {
+    var $columns = $(this).find('td');
+    var recordId = $(this).find('.column-0').text();
+
+    $columns.each(function(index) {
+      if (index > 0 && index < 16) {
+        var columnName = $(this).closest('table').find('th').eq(index).text();
+        var columnValue = $(this).text();
+
+        $('#update-modal').find(`#${columnName.toLowerCase().replace(' ', '-')}`).val(columnValue);
+      }
+    });
+
+    $('#record-id').val(recordId);
+    $('#update-modal').show();
+  });
+
+  $('.close-button').click(function() {
+    $('#record-form')[0].reset();
+    $('#update-modal').hide();
+  });
+
+  $('#record-form').submit(function(e) {
+    e.preventDefault();
+    // Perform form submission
+    // Reset the form and hide the overlay
+    $('#record-form')[0].reset();
+    $('#update-modal').hide();
+  });
+
+  $('.modal-content').mouseup(function(e) {
+    e.stopPropagation();
+  });
+
+  $(document).mouseup(function(e) {
+    var overlay = $('#update-modal');
+    var modalContent = $('.modal-content');
+    if (!modalContent.is(e.target) && modalContent.has(e.target).length === 0) {
+      overlay.hide();
+    }
+  });
+});
